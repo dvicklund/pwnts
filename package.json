@@ -1,0 +1,36 @@
+{
+  "name": "pwnts",
+  "version": "0.0.1",
+  "description": "PWNTS",
+  "main": "server.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "david@vicklund.com",
+  "license": "ISC",
+  "dependencies": {
+    "angular": "^1.5.3",
+    "angular-base64": "^2.0.5",
+    "angular-cookies": "^1.5.3",
+    "angular-route": "^1.5.3",
+    "bcrypt": "^0.8.5",
+    "body-parser": "^1.15.0",
+    "eat": "^0.1.1",
+    "express": "^4.13.4",
+    "mongoose": "^4.4.12"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-cssnano": "^2.1.1",
+    "gulp-sass": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "webpack-stream": "^3.1.0"
+  }
+}
