@@ -35,9 +35,7 @@ module.exports = function(app) {
 
     $scope.authenticate = function(user) {
       $scope.authErrors = [];
-
-      debugger;
-
+      
       if(!(user.auth.basic.username && user.auth.basic.password)) return $scope.authErrors.push('Please enter a username and password')
 
       if($scope.signup) {
