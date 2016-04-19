@@ -1,0 +1,31 @@
+<form id="login" ng-submit="authenticate(user)" ng-keyup="$event.keyCode == 13 && authenticate(user)">
+  <section id="errorBox">
+    <ul>
+      <li ng-repeat="error in authErrors">{{error}}</li>
+    </ul>
+  </section>
+
+  <section id="loginPrompt">
+    <label for="username">Username
+      <input type="text" name="username" placeholder="Username" ng-model="user.auth.basic.username">
+    </label>
+    <label for="password">Password
+      <input type="password" name="password" placeholder="Password" ng-model="user.auth.basic.password">
+    </label>
+  </section>
+  <section id="signupPrompt" ng-if="signup">
+    <label for="firstName">First Name
+      <input type="text" name="firstName" placeholder="First Name" ng-model="user.firstName">
+    </label>
+    <label for="lastName">Last Name
+      <input type="text" name="lastName" placeholder="Last Name" ng-model="user.lastName">
+    </label>
+    <label for="email">Email Address
+      <input type="email" name="email" placeholder="Email Address" ng-model="user.email">
+    </label>
+  </section>
+  <input type="submit" name="loginBtn" value="Login" ng-if="!signup">
+  <input type="submit" name="signupBtn" value="Sign Up" ng-if="signup">
+  <button type="button" ng-click="toggleSignup()" ng-if="!signup">No Account Yet?</button>
+  <button type="button" ng-click="toggleSignup()" ng-if="signup">Already Have an Account?</button>
+</form>

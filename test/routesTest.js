@@ -8,7 +8,7 @@ process.env.MONGOLAB_URI = 'mongodb://localhost/test'
 require(__dirname + '/../server')
 
 describe('api routes', function() {
-  var token, userID, token2
+  var token, userID, token2, token3
 
   before(function(done) {
     request('localhost:3000')
@@ -27,7 +27,7 @@ describe('api routes', function() {
     .end(function(err, res) {
       if(err) console.log(err.toString())
       token = res.body.token
-      
+
       request('localhost:3000')
       .post('/auth/signup')
       .send({
@@ -44,7 +44,25 @@ describe('api routes', function() {
       .end(function(err, res) {
         if(err) console.log(err.toString())
         token2 = res.body.token
-        done()
+
+        request('localhost:3000')
+        .post('/auth/signup')
+        .send({
+          auth: {
+            basic: {
+              username: 'brick2',
+              password: 'pw1234'
+            }
+          },
+          firstName: 'James',
+          lastName: 'Avery',
+          email: 'gravybones@test.com'
+        })
+        .end(function(err, res) {
+          if(err) console.log(err.toString())
+          token3 = res.body.token
+          done()
+        })
       })
     })
   })
@@ -117,21 +135,21 @@ describe('api routes', function() {
     it('should delete a user', function(done) {
       request('localhost:3000')
       .delete('/auth/user')
-      .set('token', token)
+      .set('token', token3)
       .end(function(err, res) {
-        expect(res.body.msg).to.eql('dvick deleted')
+        expect(res.body.msg).to.eql('brick2 deleted')
         done()
       })
     })
   })
 
   describe('points router', function() {
-    it('should increase points', function(done) {
+    it('should increase distributable points', function(done) {
       request('localhost:3000')
       .put('/points/add/20')
       .set('token', token)
       .end(function(err, res) {
-        expect(res.body.user.points).to.eql(40)
+        expect(res.body.distributable).to.eql(40)
         done()
       })
     })
@@ -141,8 +159,8 @@ describe('api routes', function() {
       .put('/points/give/1/brick')
       .set('token', token)
       .end(function(err, res) {
-        expect(res.body.user.points).to.eql(39)
-        expect(res.body.user.pointsGiven.length).to.eql(1)
+        expect(res.body.distributable).to.eql(39)
+        expect(res.body.pointsGiven.length).to.eql(1)
         done()
       })
     })
