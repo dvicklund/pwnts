@@ -1,0 +1,17 @@
+<section id="pwntsMain" ng-init="getUser()">
+  <header class="header"></header>
+  <p>
+    Who deserves points today?
+    <form ng-submit="findUser()">
+      <input id="recipient" type="text" name="recipient" ng-model="searchText">
+      <input type="submit" name="searchBtn" value="Search">
+    </form>
+  </p>
+  <table>
+    <tbody>
+      <tr ng-repeat="user in searchResults">
+        <td><a ng-click="setRecipient(user)">{{user.fullName}}</a></td>
+      </tr>
+    </tbody>
+  </table>
+</section>

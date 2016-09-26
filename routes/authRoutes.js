@@ -14,6 +14,7 @@ authRouter.post('/signup', function(req, res) {
       user.username = req.body.auth.basic.username
       user.firstName = req.body.firstName
       user.lastName = req.body.lastName
+      user.fullName = req.body.firstName + ' ' + req.body.lastName
       user.email = req.body.email
 
       user.hashPW(req.body.auth.basic.password)

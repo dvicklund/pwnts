@@ -38,3 +38,11 @@ pointsRouter.put('/give/:num/:user', decryptUser, function(req, res) {
     })
   })
 })
+
+pointsRouter.get('/user/:query', function(req, res) {
+  var searchTerm = new RegExp(req.params.query, 'i')
+  User.find({fullName: searchTerm}, 'username fullName', function(err, users) {
+    if(err) res.send(err)
+    res.json(users)
+  })
+})

@@ -13,6 +13,7 @@ var userSchema = new mongoose.Schema({
   email: String,
   firstName: String,
   lastName: String,
+  fullName: String,
   displayPhoto: {type: String, default: ''},
   locationCity: String,
   locationState: String,
